@@ -2,7 +2,7 @@ import './App.css';
 import React, { createContext, useEffect, useState } from 'react';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
-import PatientService from './components/services/PatientDB';
+import PatientDB from './components/services/PatientDB';
 
 export const PatientContext = createContext([{}]);
 
@@ -13,7 +13,7 @@ function App() {
   const [selectedPatient, setSelectedPatient] = useState([]);
 
   async function patientsHasChanged() {
-    const patientService = new PatientService();
+    const patientService = new PatientDB();
     const loadedPatients = await patientService.getPatients();
     let newSelectedPatientComments = [];
     let selectedUserComment = [];
