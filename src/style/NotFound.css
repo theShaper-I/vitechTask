@@ -1,0 +1,10 @@
+.not-found {
+    position: fixed;
+    margin: auto;
+    margin-top: 320px;
+    margin-left: 480px;
+}
+
+.not-found-text {
+    font-size: 36px;
+}

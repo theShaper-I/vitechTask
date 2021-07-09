@@ -1,0 +1,28 @@
+.content {
+    background: white;
+}
+
+.new-patient-wrapper {
+    margin-top: 30px;
+}
+
+.new-patient-wrapper ul {
+    padding-inline-start: 0px;
+}
+
+.new-patient-list {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px 0px 25px;
+}
+
+.new-patient-list span {
+    margin-top: 5px;
+}
+
+.new-patient-wrapper button {
+    display: inline;
+    box-shadow: 2px 3px 4px 2px rgba(0, 0, 0, 0.5);
+    margin-left: 25px;
+    margin-top: 20px;
+}
