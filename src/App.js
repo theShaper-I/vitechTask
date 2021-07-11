@@ -2,9 +2,8 @@ import './App.css';
 import React, { createContext, useEffect, useState } from 'react';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
-import PatientDB from './components/services/PatientDB';
 
-export const PatientContext = createContext([{}]);
+export const PatientContext = createContext();
 
 function App() {
   const [patients, setPatients] = useState([]);
@@ -13,17 +12,13 @@ function App() {
   const [selectedPatient, setSelectedPatient] = useState([]);
 
   async function patientsHasChanged() {
-    const patientService = new PatientDB();
-    const loadedPatients = await patientService.getPatients();
+
     let newSelectedPatientComments = [];
     let selectedUserComment = [];
 
     newSelectedPatientComments.forEach(c => {
       selectedUserComment = [...selectedUserComment, { id: c.id, comment: c.comment, date: c.date }];
     });
-
-    setPatients(loadedPatients);
-    setSidebarPatients(loadedPatients);
 
     setComments(selectedUserComment);
   }

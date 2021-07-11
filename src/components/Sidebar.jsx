@@ -4,7 +4,7 @@ import { PatientContext } from '../App';
 const Sidebar = () => {
     const { setSelectedPatient, setComments, sidebarPatients } = useContext(PatientContext);
 
-    const setNewSelectedPatient = async (patient) => {
+    const setNewSelectedPatient = async (patient) => {     
         setSelectedPatient(patient);
         let newSelectedPatientComments = patient.comments;
 

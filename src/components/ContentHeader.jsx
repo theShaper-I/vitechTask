@@ -12,7 +12,7 @@ const ContentHeader = () => {
         history.push('/');
     };
 
-    const pushEditComponent = () => {
+    const editPatient = () => {
         history.push('/patient/edit');
     };
 
@@ -20,10 +20,10 @@ const ContentHeader = () => {
         <div className='header'>
             <p className='firstname'>{selectedPatient.firstname}</p>
             <p className='lastname'>{selectedPatient.lastname}</p>
-            <p id='age'>{selectedPatient.age} years old</p>
+            {selectedPatient.age ? <p className='age'>{selectedPatient.age} years old</p>: null}
 
             <div> 
-                <button onClick={pushEditComponent} className='edit-btn'>Edit</button>
+                <button onClick={editPatient} className='edit-btn'>Edit</button>
                 <button onClick={deletePatient} className='delete-btn'>Delete</button>
             </div>
         </div>

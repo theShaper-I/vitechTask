@@ -1,17 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import ContentHeader from './ContentHeader';
 import { PatientContext } from '../App';
 const moment = require('moment');
 
 const ContentInfo = () => {
     const { selectedPatient, comments, setComments } = useContext(PatientContext);
+    const [comment, setComment] = useState('');
 
     const commentInput = React.createRef();
 
-    const addComment = () => {
+    const addComment = (e: any) => {
         const date = moment();
-        setComments([...comments, { comment: commentInput.current.value, date: date }]);     
+        setComments([...comments, { comment: commentInput.current.value, date: date }]);
+        e.preventDefault();
+        setComment('');  
     };
+
+    const handleChange = (e: any) => setComment(e.target.value);
 
     return (
         <div className='content'>
@@ -68,7 +73,7 @@ const ContentInfo = () => {
                     </div>
 
                     <div className='create-commentInput'>
-                        <input ref={commentInput} className='form-control' type="text"/>
+                        <input value={comment} ref={commentInput} onChange={handleChange} className='form-control' type="text"/>
                         <button onClick={addComment} className='add-btn'>+</button>
                     </div>
 

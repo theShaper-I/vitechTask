@@ -34,12 +34,12 @@
     padding: 2px 20px;
 }
 
-.content .header #age {
+.content .header .age {
     width: 250px;
     display: flex;
     justify-content: center;
     font-size: 14px;
-    margin: auto;
+    margin-top: 14px;
 }
 
 .content .sidebar-patients {

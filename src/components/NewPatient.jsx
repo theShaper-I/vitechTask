@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
-import PatientService from './services/PatientDB';
+import PatientDB from './services/PatientDB';
 import { PatientContext } from '../App';
 import ContentHeader from './ContentHeader';
 
@@ -10,8 +10,8 @@ const NewPatient = () => {
     const history = useHistory();
 
     const savePatient = async () => {
-        const newPatientService = new PatientService();
-        newPatientService.savePatient(patient);
+        const newPatientDB = new PatientDB();
+        newPatientDB.savePatient(patient);
         setSidebarPatients([...sidebarPatients, patient]);
         history.push(`/`);
     };
@@ -27,21 +27,21 @@ const NewPatient = () => {
                 <ul>
                     <li className='new-patient-list'>
                         <span>Firstname:</span>
-                        <input className='sidebar-patients form-control' 
+                        <input required className='sidebar-patients form-control' 
                         type="text" value={patient.firstname} 
                         onChange={(e) => setPatient({ ...patient, firstname: e.target.value })} />
                     </li>
 
                     <li className='new-patient-list'>
                         <span>Lastname:</span>
-                        <input className='sidebar-patients form-control' 
+                        <input required className='sidebar-patients form-control' 
                         type="text" value={patient.lastname} 
                         onChange={(e) => setPatient({ ...patient, lastname: e.target.value })} />
                     </li>
 
                     <li className='new-patient-list'>
                         <span>Birth:</span>
-                        <input className='sidebar-patients form-control' 
+                        <input required className='sidebar-patients form-control' 
                         type="text" value={patient.birth} 
                         onChange={(e) => setPatient({ ...patient, birth: e.target.value })} />
                     </li>
