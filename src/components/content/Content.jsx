@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ContentInfo from './ContentInfo';
-import NewPatient from './NewPatient';
-import EditPatient from './EditPatient';
-import NotFound from './NotFound';
+import ContentInfo from '../patientInfo/PatientInfo';
+import NewPatient from '../newPatient/NewPatient';
+import EditPatient from '../editPatient/EditPatient';
+import NotFound from '../notFound/NotFound';
 
 const Content = () => {
     return (

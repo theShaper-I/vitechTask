@@ -1,21 +1,22 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
-import { PatientContext } from '../App';
-import PatientDB from './services/PatientDB';
-import ContentHeader from './ContentHeader';
+import { PatientContext } from '../app/App';
+import PatientService from '../../services/PatientService';
+import ContentHeader from '../patientHeader/PatientHeader';
 
 const EditPatient = () => {
     const history = useHistory();
     const { selectedPatient, setSelectedPatient, sidebarPatients, setSidebarPatients } = useContext(PatientContext);
 
     const editPatient = async () => {
-        const patientService = new PatientDB();
+        const patientService = new PatientService();
         patientService.editPatient(selectedPatient);
         const patients = sidebarPatients.map(e => {
             if (e.id === selectedPatient.id) {
                 return selectedPatient;
             } return e;
         });
+
         setSidebarPatients(patients);
         history.push(`/`);
     };

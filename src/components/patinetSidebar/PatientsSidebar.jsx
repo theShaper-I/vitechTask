@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PatientContext } from '../App';
+import { PatientContext } from '../app/App';
 
 const Sidebar = () => {
     const { setSelectedPatient, setComments, sidebarPatients } = useContext(PatientContext);

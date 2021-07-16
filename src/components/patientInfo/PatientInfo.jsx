@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import ContentHeader from './ContentHeader';
-import { PatientContext } from '../App';
+import ContentHeader from '../patientHeader/PatientHeader';
+import { PatientContext } from '../app/App';
 const moment = require('moment');
 
 const ContentInfo = () => {
@@ -9,7 +9,7 @@ const ContentInfo = () => {
 
     const commentInput = React.createRef();
 
-    const addComment = (e: any) => {
+    const addPatientComment = (e: any) => {
         const date = moment();
         setComments([...comments, { comment: commentInput.current.value, date: date }]);
         e.preventDefault();
@@ -58,7 +58,7 @@ const ContentInfo = () => {
                         </p>
                         <ul>
                             {comments.map(c =>                               
-                                <li>
+                                <li key={c.id}>
                                     <div className='new-comment'>
                                         <div>
                                             <strong>{moment(c.date).format('ll')}</strong>
@@ -74,7 +74,7 @@ const ContentInfo = () => {
 
                     <div className='create-commentInput'>
                         <input value={comment} ref={commentInput} onChange={handleChange} className='form-control' type="text"/>
-                        <button onClick={addComment} className='add-btn'>+</button>
+                        <button onClick={addPatientComment} className='add-btn'>+</button>
                     </div>
 
                 </div>  
