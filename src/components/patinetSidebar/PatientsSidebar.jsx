@@ -1,13 +1,15 @@
 import React, { useContext } from 'react';
 import { PatientContext } from '../app/App';
+import { useHistory } from 'react-router-dom';
 
 const Sidebar = () => {
     const { setSelectedPatient, setComments, sidebarPatients } = useContext(PatientContext);
+    const history = useHistory();
 
     const setNewSelectedPatient = async (patient) => {     
         setSelectedPatient(patient);
-        let newSelectedPatientComments = patient.comments;
 
+        let newSelectedPatientComments = patient.comments;
         if (newSelectedPatientComments === undefined) {
             newSelectedPatientComments = [];
         }
@@ -18,6 +20,7 @@ const Sidebar = () => {
         });
 
         setComments(selectedUserComment);
+        history.push(`/patient/${patient.id}`);
     };
 
     return (

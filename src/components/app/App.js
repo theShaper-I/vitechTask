@@ -51,13 +51,15 @@ function App() {
   }, []);
 
   return (
-    <div className='app'>
-      <PatientContext.Provider value={{selectedPatient, setSelectedPatient, patients, setPatients, patientsHasChanged,
-                                       comments, setComments, sidebarPatients, setSidebarPatients }}>
-        <Sidebar />
-        <Content />
-      </PatientContext.Provider>
-    </div>
+      <div className='app'>
+        <PatientContext.Provider
+        value={{
+        selectedPatient, setSelectedPatient, patients, setPatients, patientsHasChanged,
+        comments, setComments, sidebarPatients, setSidebarPatients }}>
+          <Sidebar />
+          <Content />
+        </PatientContext.Provider>
+      </div>
   );
 }
 

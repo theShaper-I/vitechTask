@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router';
 import { PatientContext } from '../app/App';
 import PatientService from '../../services/PatientService';
-import ContentHeader from '../patientHeader/PatientHeader';
+import PatientHeader from '../patientHeader/PatientHeader';
 
 const EditPatient = () => {
     const history = useHistory();
@@ -27,7 +27,7 @@ const EditPatient = () => {
 
     return (
         <div>
-            <ContentHeader />
+            <PatientHeader />
             <div className='new-patient-wrapper'>
                 <ul>
                     <li className='new-patient-list'>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from 'react-router';
 import PatientService from '../../services/PatientService';
 import { PatientContext } from '../app/App';
-import ContentHeader from '../patientHeader/PatientHeader';
+import PatientHeader from '../patientHeader/PatientHeader';
 
 const NewPatient = () => {
     const { sidebarPatients, setSidebarPatients } = useContext(PatientContext);
@@ -10,7 +10,7 @@ const NewPatient = () => {
     const history = useHistory();
 
     const savePatient = async () => {
-        const newPatientService= new PatientService();
+        const newPatientService = new PatientService();
         newPatientService.savePatient(patient);
         setSidebarPatients([...sidebarPatients, patient]);
         history.push(`/`);
@@ -22,7 +22,7 @@ const NewPatient = () => {
 
     return (
         <div>
-            <ContentHeader />
+            <PatientHeader />
             <div className='new-patient-wrapper'>
                 <ul>
                     <li className='new-patient-list'>

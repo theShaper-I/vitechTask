@@ -1,14 +1,17 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { PatientContext } from '../app/App';
+import PatientService from '../../services/PatientService';
 
 const ContentHeader = () => {
     let { selectedPatient, setSidebarPatients, sidebarPatients } = useContext(PatientContext);
     const history = useHistory();
 
     const deletePatient = async () => {
+        const patientService = new PatientService;
         const newSidebarPatients = sidebarPatients.filter(e => e.id != selectedPatient.id);
         setSidebarPatients(newSidebarPatients);
+        patientService.deletePatient(selectedPatient.id);
         history.push('/');
     };
 

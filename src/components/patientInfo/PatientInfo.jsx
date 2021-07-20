@@ -1,17 +1,23 @@
 import React, { useContext, useState } from 'react';
 import ContentHeader from '../patientHeader/PatientHeader';
 import { PatientContext } from '../app/App';
-const moment = require('moment');
+import PatientService from '../../services/PatientService';
+
+
 
 const ContentInfo = () => {
     const { selectedPatient, comments, setComments } = useContext(PatientContext);
     const [comment, setComment] = useState('');
+    const moment = require('moment');
 
     const commentInput = React.createRef();
 
     const addPatientComment = (e: any) => {
         const date = moment();
         setComments([...comments, { comment: commentInput.current.value, date: date }]);
+        const newCommentForDatabase = { comment: commentInput.current.value, patient_id: selectedPatient.id, date: date };
+        const patientService = new PatientService;
+        patientService.saveComment(newCommentForDatabase);
         e.preventDefault();
         setComment('');  
     };
