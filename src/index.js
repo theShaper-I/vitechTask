@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Wrapper from "./Wrapper";
+import firebase from 'firebase/app'
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBfn-98xj3mEv8zl7G9OE7SkTClEkaBMFg",
+    authDomain: "vitechtask.firebaseapp.com",
+    databaseURL: "https://vitechtask-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "vitechtask",
+    storageBucket: "vitechtask.appspot.com",
+    messagingSenderId: "336140015390",
+    appId: "1:336140015390:web:21abed11cfb8b1a42adb0f"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <Wrapper />
+    </React.StrictMode>,
+    document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
