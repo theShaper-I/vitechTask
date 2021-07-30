@@ -1,15 +1,24 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { PatientContext } from '../app/App';
-// import PatientService from '../../services/PatientService';
+import PatientService from '../../services/PatientService';
 
 const PatientHeader = () => {
-    let { selectedPatient } = useContext(PatientContext);
+    let { selectedPatient, setSidebarPatients, sidebarPatients } = useContext(PatientContext);
     const history = useHistory();
 
-    const editPatient = () => {
+    const patientService = new PatientService;
+
+    const editPatientButtonPush = () => {
         history.push('/patient/edit');
     };
+
+    const deletePatientButtonPush = () => {
+        const newSidebarPatients = sidebarPatients.filters(el => el.id != selectedPatient.id);
+        setSidebarPatients(newSidebarPatients)
+        patientService.deletePatient(selectedPatient.id);
+        history.push('/patient')
+    }
 
 
     return (
@@ -19,8 +28,8 @@ const PatientHeader = () => {
             {selectedPatient.age ? <p className='age'>{selectedPatient.age} years old</p>: null}
 
             <div>
-                <button onClick={editPatient} className='edit-btn'>Edit</button>
-                <button onClick={' '} className='delete-btn'>Delete</button>
+                <button onClick={editPatientButtonPush} className='edit-btn'>Edit</button>
+                <button onClick={deletePatientButtonPush} className='delete-btn'>Delete</button>
             </div>
         </div>
     );

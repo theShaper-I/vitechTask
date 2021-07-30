@@ -5,13 +5,21 @@ import { PatientContext } from "../app/App";
 import PatientHeader from "../patientHeader/PatientHeader";
 
 const EditPatient = () => {
-    const { selectedPatient, setSelectedPatient } = useContext(PatientContext);
+    const { selectedPatient, setSelectedPatient, sidebarPatients, setSidebarPatients } = useContext(PatientContext);
     const history = useHistory();
 
     const patientService = new PatientService();
 
     const editPatientButtonPush = async () => {
         patientService.editPatient(selectedPatient)
+        const patients = sidebarPatients.map(e => {
+            if (e.id === selectedPatient.id) {
+                return selectedPatient;
+            } else return e;
+        });
+        setSidebarPatients(patients);
+
+        history.push(`/`);
     }
 
     const cancelChangesButtonPush = () => {
@@ -38,17 +46,17 @@ const EditPatient = () => {
                     </li>
 
                     <li className='new-patient-list'>
-                        <span>Age:</span>
-                        <input className='sidebar-patients form-control new-patient-form'
-                               type="text" defaultValue={selectedPatient.age}
-                               onChange={(e) => setSelectedPatient({ ...selectedPatient, age: e.target.value })} />
-                    </li>
-
-                    <li className='new-patient-list'>
                         <span>Birth:</span>
                         <input className='sidebar-patients form-control new-patient-form'
                                type="text" defaultValue={selectedPatient.birth}
                                onChange={(e) => setSelectedPatient({ ...selectedPatient, birth: e.target.value })} />
+                    </li>
+
+                    <li className='new-patient-list'>
+                        <span>Age:</span>
+                        <input className='sidebar-patients form-control new-patient-form'
+                               type="text" defaultValue={selectedPatient.age}
+                               onChange={(e) => setSelectedPatient({ ...selectedPatient, age: e.target.value })} />
                     </li>
 
                     <li className='new-patient-list'>
@@ -73,7 +81,7 @@ const EditPatient = () => {
                     </li>
 
                     <li className='new-patient-list'>
-                        <span>Address:</span>
+                        <span>City:</span>
                         <input className='sidebar-patients form-control new-patient-form'
                                type="text" defaultValue={selectedPatient.city}
                                onChange={(e) => setSelectedPatient({ ...selectedPatient, city: e.target.value })} />

@@ -4,26 +4,6 @@ export const url = 'https://vitechtask-default-rtdb.europe-west1.firebasedatabas
 
 export default class PatientService {
 
-    showPatients(patients) {
-        patients.then((response) => {
-            const patients = response.data;
-            for (let patientID in patients) {
-                console.log(patientID);
-                console.log(patients[patientID]);
-            }
-        })
-            .catch((error) => {
-                console.error(error);
-            })
-            .then(() => {
-                // always executed
-            });
-    }
-
-    getPromisePatients(url) {
-        return axios.get(url);
-    }
-
     savePatient(patient) {
         axios.post(`${url}/patientLoad.json`, {
             firstname: patient.firstname,
@@ -55,7 +35,27 @@ export default class PatientService {
     }
 
     editPatient(editedPatientInfo) {
-        axios.post(`${url}/patientLoad.json`, editedPatientInfo)
+        axios.put(`${url}/patientLoad.json`, editedPatientInfo)
+            .catch((error) => {
+                console.error(error);
+            })
+            .then(() => {
+                // always executed
+            });
+    }
+
+    deletePatient(patientID) {
+        axios.delete(`${url}/patientLoad/${patientID}`)
+            .catch((error) => {
+                console.error(error);
+            })
+            .then(() => {
+                // always executed
+            });
+    }
+
+    saveComment(commentForDatabase) {
+        axios.post(`${url}/patientLoad/comment.json`, commentForDatabase)
             .catch((error) => {
                 console.error(error);
             })
