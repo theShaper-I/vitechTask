@@ -13,11 +13,11 @@ const AddNewPatient = () => {
     // TODO зробити так щоб паціенти відображались на сайдбарі без оновлення
     const savePatientButtonPush = async () => {
         patientService.savePatient(patients);
-        history.push(`/`);
+        history.push(`/patient`);
     };
 
     const cancelInfoPageButtonPush = () => {
-        history.push(`/`);
+        history.push(`/patient`);
     };
 
     return (

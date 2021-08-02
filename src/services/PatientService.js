@@ -34,8 +34,8 @@ export default class PatientService {
             });
     }
 
-    editPatient(editedPatientInfo) {
-        axios.put(`${url}/patientLoad.json`, editedPatientInfo)
+    editPatient(editedPatientInfo, patientID) {
+        axios.patch(`${url}/patientLoad/${patientID}.json`, editedPatientInfo)
             .catch((error) => {
                 console.error(error);
             })
@@ -45,12 +45,12 @@ export default class PatientService {
     }
 
     deletePatient(patientID) {
-        axios.delete(`${url}/patientLoad/${patientID}`)
+        axios.delete(`${url}/patientLoad/${patientID}.json`)
             .catch((error) => {
                 console.error(error);
             })
-            .then(() => {
-                // always executed
+            .then((response) => {
+                console.log(response);
             });
     }
 

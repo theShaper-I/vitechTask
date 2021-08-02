@@ -9,17 +9,14 @@ const PatientHeader = () => {
 
     const patientService = new PatientService;
 
-    const editPatientButtonPush = () => {
-        history.push('/patient/edit');
-    };
-
     const deletePatientButtonPush = () => {
-        const newSidebarPatients = sidebarPatients.filters(el => el.id != selectedPatient.id);
-        setSidebarPatients(newSidebarPatients)
         patientService.deletePatient(selectedPatient.id);
         history.push('/patient')
     }
 
+    const editPatientButtonPush = () => {
+        history.push('/patient/edit');
+    };
 
     return (
         <div className='header'>

@@ -11,7 +11,7 @@ const EditPatient = () => {
     const patientService = new PatientService();
 
     const editPatientButtonPush = async () => {
-        patientService.editPatient(selectedPatient)
+        patientService.editPatient(selectedPatient, selectedPatient.id)
         const patients = sidebarPatients.map(e => {
             if (e.id === selectedPatient.id) {
                 return selectedPatient;
@@ -19,11 +19,11 @@ const EditPatient = () => {
         });
         setSidebarPatients(patients);
 
-        history.push(`/`);
+        history.push(`/patient`);
     }
 
     const cancelChangesButtonPush = () => {
-        history.push(`/`);
+        history.push(`/patient`);
     };
 
     return (

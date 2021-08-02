@@ -1,28 +1,16 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import {PatientContext} from "../app/App";
-import PatientService from '../../services/PatientService';
 import PatientHeader from "../patientHeader/PatientHeader";
+import PatientService from '../../services/PatientService';
 const moment = require('moment');
 
 
 const PatientInfo = () => {
     const { selectedPatient, comments, setComments } = useContext(PatientContext);
-    const [comment, setComment] = useState('');
     const moment = require('moment');
 
     const commentInput = React.createRef();
     const patientService = new PatientService();
-
-    const addPatientComment = (e) => {
-        const date = moment();
-        setComments([...comments, { comment: commentInput.current.value, date: date }]);
-        const newCommentForDatabase = { comment: commentInput.current.value, patient_id: selectedPatient.id, date: date };
-        patientService.saveComment(newCommentForDatabase);
-        e.preventDefault();
-        setComment('');
-    };
-
-    const handleChange = (e) => setComment(e.target.value);
 
     return (
         <div className='content'>
@@ -68,7 +56,7 @@ const PatientInfo = () => {
                     </div>
 
                     <div className='create-commentInput'>
-                        <input value={comment} ref={commentInput} onChange={handleChange} className='form-control' type="text"/>
+                        <input  ref={commentInput} className='form-control' type="text"/>
                         <button onClick={addPatientComment} className='add-btn'>+</button>
                     </div>
 
